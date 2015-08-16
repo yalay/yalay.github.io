@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="算法研究,编程艺术,网络协议" />
+  <meta name="keywords" content="go," />
 
 
 
@@ -35,15 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="威威牛博客">
-<meta property="og:url" content="http://blog.vvniu.com/index.html">
+<meta name="description" content="一、简单测试
+测试Go代码　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。　　下面是一个完整的测试strings.Index函数的完整测试文件：1234567891011121314package strings_testimport (    &quot;strings&quot;    &quot;testing&quot;)func TestIndex(t *testing.T) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go语言单元测试 golang单元测试详解">
+<meta property="og:url" content="http://blog.vvniu.com/uncategorized/go语言单元测试-golang单元测试详解/index.html">
 <meta property="og:site_name" content="威威牛博客">
-<meta property="og:description">
+<meta property="og:description" content="一、简单测试
+测试Go代码　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。　　下面是一个完整的测试strings.Index函数的完整测试文件：1234567891011121314package strings_testimport (    &quot;strings&quot;    &quot;testing&quot;)func TestIndex(t *testing.T) &amp;#123;">
+<meta property="og:updated_time" content="2015-08-16T14:16:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="威威牛博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="go语言单元测试 golang单元测试详解">
+<meta name="twitter:description" content="一、简单测试
+测试Go代码　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。　　下面是一个完整的测试strings.Index函数的完整测试文件：1234567891011121314package strings_testimport (    &quot;strings&quot;    &quot;testing&quot;)func TestIndex(t *testing.T) &amp;#123;">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -53,7 +57,7 @@
   };
 </script>
 
-  <title> 威威牛博客 </title>
+  <title> go语言单元测试 golang单元测试详解 | 威威牛博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -80,9 +84,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -195,9 +197,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -208,9 +210,7 @@
           
           
             
-              <a class="post-title-link" href="/uncategorized/go语言单元测试-golang单元测试详解/" itemprop="url">
-                go语言单元测试 golang单元测试详解
-              </a>
+              go语言单元测试 golang单元测试详解
             
           
         </h1>
@@ -245,8 +245,7 @@
       
 
       
-        
-          <span itemprop="articleBody"><h3 id="一、简单测试">一、简单测试</h3><ol>
+        <span itemprop="articleBody"><h3 id="一、简单测试">一、简单测试</h3><ol>
 <li>测试Go代码<br>　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。<br>　　下面是一个完整的测试strings.Index函数的完整测试文件：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> strings_test</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">    <span class="string">"testing"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestIndex(t *testing.T) &#123;</span><br><span class="line">    <span class="keyword">const</span> s, sep, want = <span class="string">"chicken"</span>, <span class="string">"ken"</span>, <span class="number">4</span></span><br><span class="line">    got := strings.Index(s, sep)</span><br><span class="line">    <span class="keyword">if</span> got != want &#123;</span><br><span class="line">        t.Errorf(<span class="string">"Index(%q,%q) = %v; want %v"</span>, s, sep, got, want)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -340,210 +339,60 @@
 </ol>
 <p>　　为了测试上面的代码，我们将测试程序本身作为一个子进程进行测试：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> TestCrasher(t *testing.T) &#123;</span><br><span class="line">    <span class="keyword">if</span> os.Getenv(<span class="string">"BE_CRASHER"</span>) == <span class="string">"1"</span> &#123;</span><br><span class="line">        Crasher()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    cmd := exec.Command(os.Args[<span class="number">0</span>], <span class="string">"-test.run=TestCrasher"</span>)</span><br><span class="line">    cmd.Env = <span class="built_in">append</span>(os.Environ(), <span class="string">"BE_CRASHER=1"</span>)</span><br><span class="line">    err := cmd.Run()</span><br><span class="line">    <span class="keyword">if</span> e, ok := err.(*exec.ExitError); ok &amp;&amp; !e.Success() &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    t.Fatalf(<span class="string">"process ran with err %v, want exit status 1"</span>, err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
-        
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
+        <div class="post-tags">
           
+            <a href="/tags/go/" rel="tag">#go</a>
           
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/algorithm/快速排序算法详解与源代码实现/" itemprop="url">
-                快速排序算法详解与源代码实现
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-10T11:27:07+08:00" content="2015-08-10">
-            2015-08-10
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/algorithm/" itemprop="url" rel="index">
-                  <span itemprop="name">algorithm</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/algorithm/快速排序算法详解与源代码实现/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/快速排序算法详解与源代码实现/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="一、基本概念">一、基本概念</h3><p>　　引用算法导论内容，快速排序时基于分治模式处理的，对一个典型子数组A[l…r]排序的分治过程为三个步骤：</p>
-<blockquote>
-<p>1.分解：A[l..r]被划分为俩个的子数组A[l ..q-1]和A[q+1 ..r]，使得A[l ..q-1] &lt;= A[q] &lt;= A[q+1 ..r]<br>2.解决：通过递归调用快速排序，对子数组A[l ..q-1]和A[q+1 ..r]排序。<br>3.合并。</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/algorithm/快速排序算法详解与源代码实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+          <div class="post-nav-next post-nav-item">
             
-              <a class="post-title-link" href="/algorithm/冒泡排序的优化算法/" itemprop="url">
-                冒泡排序的优化算法
-              </a>
+              <a href="/algorithm/快速排序算法详解与源代码实现/" rel="next">快速排序算法详解与源代码实现</a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-09T18:29:33+08:00" content="2015-08-09">
-            2015-08-09
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/algorithm/" itemprop="url" rel="index">
-                  <span itemprop="name">algorithm</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/algorithm/冒泡排序的优化算法/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/冒泡排序的优化算法/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>　　冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/algorithm/冒泡排序的优化算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
  </div>
 
         
+            <!-- 多说热评文章-->
+            <p>热评文章</p>
+            <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+        
 
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="uncategorized/go语言单元测试-golang单元测试详解/"
+                   data-title="go语言单元测试 golang单元测试详解" data-url="http://blog.vvniu.com/uncategorized/go语言单元测试-golang单元测试详解/">
+              </div>
+            
+          </div>
         
       </div>
 
@@ -560,6 +409,15 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -607,6 +465,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、简单测试"><span class="nav-number">1.</span> <span class="nav-text">一、简单测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、高级测试技术"><span class="nav-number">2.</span> <span class="nav-text">二、高级测试技术</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
       
 
     </div>
@@ -694,6 +563,165 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
