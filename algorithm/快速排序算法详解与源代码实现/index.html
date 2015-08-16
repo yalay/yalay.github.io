@@ -35,16 +35,23 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
+<meta name="description" content="一、基本概念　　引用算法导论内容，快速排序时基于分治模式处理的，对一个典型子数组A[l…r]排序的分治过程为三个步骤：
+
+1.分解：A[l..r]被划分为俩个的子数组A[l ..q-1]和A[q+1 ..r]，使得A[l ..q-1] &amp;lt;= A[q] &amp;lt;= A[q+1 ..r]2.解决：通过递归调用快速排序，对子数组A[l ..q-1]和A[q+1 ..r]排序。3.合并。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冒泡排序的优化算法">
-<meta property="og:url" content="http://blog.vvniu.com/algorithm/冒泡排序的优化算法/index.html">
+<meta property="og:title" content="快速排序算法详解与源代码实现">
+<meta property="og:url" content="http://blog.vvniu.com/algorithm/快速排序算法详解与源代码实现/index.html">
 <meta property="og:site_name" content="威威牛博客">
-<meta property="og:description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
-<meta property="og:updated_time" content="2015-08-16T02:53:52.000Z">
+<meta property="og:description" content="一、基本概念　　引用算法导论内容，快速排序时基于分治模式处理的，对一个典型子数组A[l…r]排序的分治过程为三个步骤：
+
+1.分解：A[l..r]被划分为俩个的子数组A[l ..q-1]和A[q+1 ..r]，使得A[l ..q-1] &amp;lt;= A[q] &amp;lt;= A[q+1 ..r]2.解决：通过递归调用快速排序，对子数组A[l ..q-1]和A[q+1 ..r]排序。3.合并。">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201101/4/8394323_1294143497o5H8.jpg">
+<meta property="og:updated_time" content="2015-08-16T03:29:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冒泡排序的优化算法">
-<meta name="twitter:description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
+<meta name="twitter:title" content="快速排序算法详解与源代码实现">
+<meta name="twitter:description" content="一、基本概念　　引用算法导论内容，快速排序时基于分治模式处理的，对一个典型子数组A[l…r]排序的分治过程为三个步骤：
+
+1.分解：A[l..r]被划分为俩个的子数组A[l ..q-1]和A[q+1 ..r]，使得A[l ..q-1] &amp;lt;= A[q] &amp;lt;= A[q+1 ..r]2.解决：通过递归调用快速排序，对子数组A[l ..q-1]和A[q+1 ..r]排序。3.合并。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +61,7 @@
   };
 </script>
 
-  <title> 冒泡排序的优化算法 | 威威牛博客 </title>
+  <title> 快速排序算法详解与源代码实现 | 威威牛博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -169,7 +176,7 @@
           
           
             
-              冒泡排序的优化算法
+              快速排序算法详解与源代码实现
             
           
         </h1>
@@ -178,8 +185,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-09T18:29:33+08:00" content="2015-08-09">
-            2015-08-09
+          <time itemprop="dateCreated" datetime="2015-08-10T11:27:07+08:00" content="2015-08-10">
+            2015-08-10
           </time>
         </span>
 
@@ -204,8 +211,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/algorithm/冒泡排序的优化算法/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/冒泡排序的优化算法/" itemprop="commentsCount"></span>
+              <a href="/algorithm/快速排序算法详解与源代码实现/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/快速排序算法详解与源代码实现/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,8 +226,14 @@
       
 
       
-        <span itemprop="articleBody"><p>　　冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？<br><a id="more"></a><br>　　看代码实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序优化算法,输入为长度为num的整形数组</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">BubblingSort</span><span class="params">(<span class="keyword">int</span> *data, <span class="keyword">int</span> num)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data == <span class="literal">NULL</span> || num &lt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> exchange = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;   </span><br><span class="line">        exchange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = num - <span class="number">1</span>;j &gt; i; j--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[j] &lt; data[j - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 交换数据</span></span><br><span class="line">                swap(data, j, j - <span class="number">1</span>);</span><br><span class="line">                exchange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">if</span> (!exchange)</span><br><span class="line">        &#123;   </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　通过增加exchange变量来判断该次遍历是否有发生过交换，如果没有其实就已经是排好序的&gt;，不必要在进行下面的遍历了，直接返回。<br>　　其实选择排序也是针对于冒泡的优化算法，减少了交换的次数，每次都找到最小的但是不去&gt;进行交换操作，最后才把最小的放到指定位置。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序,输入为长度为num的整形数组</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> *data, <span class="keyword">int</span> num)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data == <span class="literal">NULL</span> || num &lt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> min = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>;j &lt; num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[j] &lt; data[min])</span><br><span class="line">            &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(data, i, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><h3 id="一、基本概念">一、基本概念</h3><p>　　引用算法导论内容，快速排序时基于分治模式处理的，对一个典型子数组A[l…r]排序的分治过程为三个步骤：</p>
+<blockquote>
+<p>1.分解：A[l..r]被划分为俩个的子数组A[l ..q-1]和A[q+1 ..r]，使得A[l ..q-1] &lt;= A[q] &lt;= A[q+1 ..r]<br>2.解决：通过递归调用快速排序，对子数组A[l ..q-1]和A[q+1 ..r]排序。<br>3.合并。<br><a id="more"></a></p>
+<h3 id="二、伪代码">二、伪代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QUICKSORT(A, p, r)</span><br><span class="line"><span class="keyword">if</span> p &lt; r</span><br><span class="line">    then q ← PARTITION(A, p, r)   <span class="comment">//关键</span></span><br><span class="line">        QUICKSORT(A, p, q - <span class="number">1</span>)</span><br><span class="line">        QUICKSORT(A, q + <span class="number">1</span>, r)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>　　快速排序算法的关键是PARTITION过程，它对A进行就地重排：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PARTITION(A, p, r)</span><br><span class="line">   x ← A[r]</span><br><span class="line">   i ← p - <span class="number">1</span></span><br><span class="line">   <span class="keyword">for</span> j ← p to r - <span class="number">1</span></span><br><span class="line">        <span class="keyword">do</span> <span class="keyword">if</span> A[j] ≤ x</span><br><span class="line">              then i ← i + <span class="number">1</span></span><br><span class="line">                   exchange A[i] &lt;-&gt; A[j]</span><br><span class="line">   exchange A[i + <span class="number">1</span>] &lt;-&gt; A[r]</span><br><span class="line">   <span class="keyword">return</span> i + <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="三、图示举例">三、图示举例</h3><p>关键的PARTITION图示<br><img src="http://hi.csdn.net/attachment/201101/4/8394323_1294143497o5H8.jpg" alt="PARTITION图示"></p>
+<h3 id="四、C源代码实现">四、C源代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>* data, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index1 == index2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> temp = data[index1];</span><br><span class="line">    data[index1] = data[index2];</span><br><span class="line">    data[index2] = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>*data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cmp_data = data[right];</span><br><span class="line">    <span class="keyword">int</span> div_index = left - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt; right; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (data[j] &lt;= cmp_data)</span><br><span class="line">        &#123;</span><br><span class="line">             div_index++;</span><br><span class="line">             swap(data, div_index, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(data, div_index + <span class="number">1</span>, right);</span><br><span class="line">    <span class="keyword">return</span> div_index + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>*data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> div = partition(data, left, right);</span><br><span class="line">    QuickSort(data, left, div - <span class="number">1</span>);</span><br><span class="line">    QuickSort(data, div + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>*data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d-"</span>, data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> A[] = &#123;<span class="number">5</span>, <span class="number">7</span> ,<span class="number">3</span> ,<span class="number">2</span> ,<span class="number">9</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">23</span>, <span class="number">0</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="keyword">sizeof</span>(A) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>);</span><br><span class="line">    print(A, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">    QuickSort(A, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">    print(A, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -232,11 +245,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/algorithm/快速排序算法详解与源代码实现/" rel="prev">快速排序算法详解与源代码实现</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/algorithm/冒泡排序的优化算法/" rel="next">冒泡排序的优化算法</a>
             
           </div>
         </div>
@@ -265,8 +278,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="algorithm/冒泡排序的优化算法/"
-                   data-title="冒泡排序的优化算法" data-url="http://blog.vvniu.com/algorithm/冒泡排序的优化算法/">
+              <div class="ds-thread" data-thread-key="algorithm/快速排序算法详解与源代码实现/"
+                   data-title="快速排序算法详解与源代码实现" data-url="http://blog.vvniu.com/algorithm/快速排序算法详解与源代码实现/">
               </div>
             
           </div>
@@ -348,7 +361,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、伪代码"><span class="nav-number">2.</span> <span class="nav-text">二、伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、图示举例"><span class="nav-number">3.</span> <span class="nav-text">三、图示举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、C源代码实现"><span class="nav-number">4.</span> <span class="nav-text">四、C源代码实现</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
