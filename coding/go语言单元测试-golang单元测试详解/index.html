@@ -39,11 +39,11 @@
 测试Go代码　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。　　下面是一个完整的测试strings.Index函数的完整测试文件：1234567891011121314package strings_testimport (    &quot;strings&quot;    &quot;testing&quot;)func TestIndex(t *testing.T) &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go语言单元测试 golang单元测试详解">
-<meta property="og:url" content="http://blog.vvniu.com/uncategorized/go语言单元测试-golang单元测试详解/index.html">
+<meta property="og:url" content="http://blog.vvniu.com/coding/go语言单元测试-golang单元测试详解/index.html">
 <meta property="og:site_name" content="威威牛博客">
 <meta property="og:description" content="一、简单测试
 测试Go代码　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。　　下面是一个完整的测试strings.Index函数的完整测试文件：1234567891011121314package strings_testimport (    &quot;strings&quot;    &quot;testing&quot;)func TestIndex(t *testing.T) &amp;#123;">
-<meta property="og:updated_time" content="2015-08-16T14:16:42.000Z">
+<meta property="og:updated_time" content="2015-08-16T14:23:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go语言单元测试 golang单元测试详解">
 <meta name="twitter:description" content="一、简单测试
@@ -225,13 +225,28 @@
         </span>
 
         
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/coding/" itemprop="url" rel="index">
+                  <span itemprop="name">coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
 
         
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/uncategorized/go语言单元测试-golang单元测试详解/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="uncategorized/go语言单元测试-golang单元测试详解/" itemprop="commentsCount"></span>
+              <a href="/coding/go语言单元测试-golang单元测试详解/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="coding/go语言单元测试-golang单元测试详解/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -266,7 +281,7 @@
 <li>运行测试<br>　　我们用go test命令来运行特定包的测试。默认执行当前路径下包的测试代码。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ go <span class="built_in">test</span></span><br><span class="line">PASS</span><br><span class="line">$ go <span class="built_in">test</span> -v</span><br><span class="line">=== RUN TestIndex</span><br><span class="line">— PASS: TestIndex (<span class="number">0.00</span> seconds)</span><br><span class="line">PASS</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>　　假设strings_test.go的当前目录为testgo，在testgo目录下执行go test都是OK的。但如果我们切换到testgo的上一级目录执行go test，我们会得到什么结果呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$go</span> <span class="built_in">test</span> testgo</span><br><span class="line">can<span class="string">'t load package: package testgo: cannot find package "testgo" in any of:</span><br><span class="line">    /usr/local/go/src/pkg/testgo (from $GOROOT)</span><br><span class="line">    /Users/tony/Test/GoToolsProjects/src/testgo (from $GOPATH)</span></span><br></pre></td></tr></table></figure></p>
+<p>　　假设strings_test.go的当前目录为testgo，在testgo目录下执行go test都是OK的。但如果我们切换到testgo的上一级目录执行go test，我们会得到什么结果呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$go</span> <span class="built_in">test</span> testgo</span><br><span class="line">can not  load package: package testgo: cannot find package <span class="string">"testgo"</span> <span class="keyword">in</span> any of:</span><br><span class="line">    /usr/<span class="built_in">local</span>/go/src/pkg/testgo (from <span class="variable">$GOROOT</span>)</span><br><span class="line">    /Users/tony/Test/GoToolsProjects/src/testgo (from <span class="variable">$GOPATH</span>)</span><br></pre></td></tr></table></figure></p>
 <p>　　提示找不到testgo这个包，go test后面接着的应该是一个包名，go test会在GOROOT和GOPATH下查找这个包并执行包的测试。</p>
 <ul>
 <li>测试覆盖率<br>　　go tool命令可以报告测试覆盖率统计。<br>　　我们在testgo下执行go test -cover，结果如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go build _/Users/tony/Test/Go/testgo: no buildable Go <span class="built_in">source</span> files <span class="keyword">in</span> /Users/tony/Test/Go/testgo</span><br><span class="line">FAIL    _/Users/tony/Test/Go/testgo [build failed]</span><br></pre></td></tr></table></figure>
@@ -388,8 +403,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="uncategorized/go语言单元测试-golang单元测试详解/"
-                   data-title="go语言单元测试 golang单元测试详解" data-url="http://blog.vvniu.com/uncategorized/go语言单元测试-golang单元测试详解/">
+              <div class="ds-thread" data-thread-key="coding/go语言单元测试-golang单元测试详解/"
+                   data-title="go语言单元测试 golang单元测试详解" data-url="http://blog.vvniu.com/coding/go语言单元测试-golang单元测试详解/">
               </div>
             
           </div>
@@ -436,7 +451,7 @@
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
