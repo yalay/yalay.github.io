@@ -35,19 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://blog.vvniu.com/uncategorized/hello-world/index.html">
+<meta property="og:title" content="冒泡排序的优化算法">
+<meta property="og:url" content="http://blog.vvniu.com/algorithm/冒泡排序的优化算法/index.html">
 <meta property="og:site_name" content="威威牛博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-08-15T14:12:59.000Z">
+<meta property="og:description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
+<meta property="og:updated_time" content="2015-08-16T02:53:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="冒泡排序的优化算法">
+<meta name="twitter:description" content="冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&amp;gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +54,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | 威威牛博客 </title>
+  <title> 冒泡排序的优化算法 | 威威牛博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -172,7 +169,7 @@ Quick">
           
           
             
-              Hello World
+              冒泡排序的优化算法
             
           
         </h1>
@@ -181,19 +178,34 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-15T22:12:59+08:00" content="2015-08-15">
-            2015-08-15
+          <time itemprop="dateCreated" datetime="2015-08-09T18:29:33+08:00" content="2015-08-09">
+            2015-08-09
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/algorithm/" itemprop="url" rel="index">
+                  <span itemprop="name">algorithm</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
         
 
         
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/uncategorized/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="uncategorized/hello-world/" itemprop="commentsCount"></span>
+              <a href="/algorithm/冒泡排序的优化算法/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/冒泡排序的优化算法/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -207,15 +219,8 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><p>　　冒泡排序大家都很熟悉，但是有没有优化的空间呢？想一下，如果一个已经排好序的序列，&gt;是不是通过一些标志提前结束排序而不需要一直遍历下去？<br><a id="more"></a><br>　　看代码实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序优化算法,输入为长度为num的整形数组</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">BubblingSort</span><span class="params">(<span class="keyword">int</span> *data, <span class="keyword">int</span> num)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data == <span class="literal">NULL</span> || num &lt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> exchange = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;   </span><br><span class="line">        exchange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = num - <span class="number">1</span>;j &gt; i; j--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[j] &lt; data[j - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 交换数据</span></span><br><span class="line">                swap(data, j, j - <span class="number">1</span>);</span><br><span class="line">                exchange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">if</span> (!exchange)</span><br><span class="line">        &#123;   </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　通过增加exchange变量来判断该次遍历是否有发生过交换，如果没有其实就已经是排好序的&gt;，不必要在进行下面的遍历了，直接返回。<br>　　其实选择排序也是针对于冒泡的优化算法，减少了交换的次数，每次都找到最小的但是不去&gt;进行交换操作，最后才把最小的放到指定位置。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序,输入为长度为num的整形数组</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">SelectSort</span><span class="params">(<span class="keyword">int</span> *data, <span class="keyword">int</span> num)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data == <span class="literal">NULL</span> || num &lt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> min = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        min = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>;j &lt; num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[j] &lt; data[min])</span><br><span class="line">            &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(data, i, min);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -227,11 +232,11 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/uncategorized/hello-world/" rel="prev">Hello World</a>
+            
           </div>
 
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/algorithm/冒泡排序的优化算法/" rel="next">冒泡排序的优化算法</a>
             
           </div>
         </div>
@@ -260,8 +265,8 @@ Quick">
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="uncategorized/hello-world/"
-                   data-title="Hello World" data-url="http://blog.vvniu.com/uncategorized/hello-world/">
+              <div class="ds-thread" data-thread-key="algorithm/冒泡排序的优化算法/"
+                   data-title="冒泡排序的优化算法" data-url="http://blog.vvniu.com/algorithm/冒泡排序的优化算法/">
               </div>
             
           </div>
@@ -343,7 +348,7 @@ Quick">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
