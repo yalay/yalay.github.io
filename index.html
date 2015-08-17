@@ -208,98 +208,6 @@
           
           
             
-              <a class="post-title-link" href="/coding/go语言单元测试-golang单元测试详解/" itemprop="url">
-                go语言单元测试 golang单元测试详解
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-16T22:15:26+08:00" content="2015-08-16">
-            2015-08-16
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/coding/" itemprop="url" rel="index">
-                  <span itemprop="name">coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/coding/go语言单元测试-golang单元测试详解/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="coding/go语言单元测试-golang单元测试详解/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="一、简单测试">一、简单测试</h3><ol>
-<li>测试Go代码<br>　　Go语言内置的测试框架通过testing包以及gotest命令来提供测试功能。<br>　　下面是一个完整的测试strings.Index函数的完整测试文件：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> strings_test</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">    <span class="string">"testing"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> TestIndex(t *testing.T) &#123;</span><br><span class="line">    <span class="keyword">const</span> s, sep, want = <span class="string">"chicken"</span>, <span class="string">"ken"</span>, <span class="number">4</span></span><br><span class="line">    got := strings.Index(s, sep)</span><br><span class="line">    <span class="keyword">if</span> got != want &#123;</span><br><span class="line">        t.Errorf(<span class="string">"Index(%q,%q) = %v; want %v"</span>, s, sep, got, want)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$go</span> <span class="built_in">test</span> -v strings_test.go strings.go</span><br><span class="line">=== RUN TestIndex</span><br><span class="line">— PASS: TestIndex (<span class="number">0.00</span> seconds)</span><br><span class="line">PASS</span><br><span class="line">ok      <span class="built_in">command</span>-line-arguments    <span class="number">0.007</span>s</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/coding/go语言单元测试-golang单元测试详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
               <a class="post-title-link" href="/algorithm/快速排序算法详解与源代码实现/" itemprop="url">
                 快速排序算法详解与源代码实现
               </a>
@@ -502,21 +410,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">0</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
